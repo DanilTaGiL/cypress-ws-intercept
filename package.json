@@ -1,22 +1,29 @@
 {
   "name": "cypress-ws-intercept",
   "version": "0.1.0",
+  "description": "Something like cy.intercept for WebSocket",
   "main": "./dist/index.js",
   "types": "./dist/types.d.ts",
   "license": "MIT",
+  "homepage": "https://github.com/DanilTaGiL/cypress-ws-intercept",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DanilTaGiL/cypress-ws-intercept.git"
+  },
+  "author": {
+    "name": "Danil Suyagin",
+    "email": "danil.suyagin@gmail.com"
+  },
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rm -rf dist || true"
   },
   "dependencies": {
-    "@types/minimatch": "^3.0.5",
     "cypress": "8.7.0",
     "debug": "^4.3.3",
     "express": "^4.17.2",
     "express-ws": "^5.0.2",
-    "minimatch": "^3.0.4",
-    "socket.io-client": "^4.4.1",
-    "typescript": "^4.5.5",
-    "ws": "^8.4.2"
+    "ws": "^8.4.2",
+    "typescript": "^4.5.5"
   }
 }
