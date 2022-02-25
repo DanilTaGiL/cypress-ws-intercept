@@ -1,28 +1,32 @@
 /** @type {Cypress.PluginConfig} */
-const {startServer, setMediator, unsetMediator} = require("./ws-server");
+const {startServer, unsetMediator, setMediator} = require("./index");
+const debug = require('debug')('cypress-ws-intercept');
 
 module.exports = (on, config) => {
-    // `on` is used to hook into various events Cypress emits
-    // `config` is the resolved Cypress config
+    if (!config || !config.env) {
+        return config
+    }
 
-    on('before:browser:launch', (browser, arguments) => {
-        const port = 3228;
-        startServer(port);
+    const proxySettings = config.env.cypressWsProxy;
+    if (!proxySettings) {
+        console.log('cypress-ws: PLEASE, setup WS proxy settings!')
+    }
+
+    // TODO: replace on hooks
+    on('before:browser:launch', () => {
+        startServer(proxySettings.serverPort, proxySettings.targetUrl);
     });
 
+    // TODO: replace on hooks
     on('after:spec', () => {
         unsetMediator();
     });
 
     on('task', {
         interceptWs: async (args) => {
-            // console.log("interceptWs url:", url);
+            debug("interceptWs url:", args.url);
             const mediator = new Function('return ' + args.mediatorStr)();
             setMediator(mediator);
-            return null;
-        },
-        test: async () => {
-            console.log("test!!!!");
             return null;
         }
     });

@@ -1,12 +1,17 @@
 {
   "name": "cypress-ws-intercept",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/types.d.ts",
   "license": "MIT",
-  "types": "index.d.ts",
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "clean": "rm -rf dist || true"
+  },
   "dependencies": {
     "@types/minimatch": "^3.0.5",
     "cypress": "8.7.0",
+    "debug": "^4.3.3",
     "express": "^4.17.2",
     "express-ws": "^5.0.2",
     "minimatch": "^3.0.4",

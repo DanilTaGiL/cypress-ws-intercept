@@ -6,6 +6,5 @@ declare namespace Cypress {
             url: string,
             mediator: (incoming: string, outcoming: string) => void
         ): Chainable<null>
-        test<ReturnType = any>(): Chainable<null>
     }
 }
